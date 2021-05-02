@@ -1,0 +1,38 @@
+Docker++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+$ docker ps
+CONTAINER ID   IMAGE                        COMMAND                  CREATED        STATUS          PORTS                                            NAMES
+c3a18e5fb1a9   nshou/elasticsearch-kibana   "/bin/sh -c 'elastic…"   4 months ago   Up 20 minutes   0.0.0.0:5601->5601/tcp, 0.0.0.0:9200->9200/tcp   loving_rubin
+
+$ docker imageso
+REPOSITORY                   TAG       IMAGE ID       CREATED         SIZE
+nshou/elasticsearch-kibana   latest    6a72f19c1678   8 months ago    809MB
+
+Elastic+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+curl -X GET localhost:9200
+
+Indexes/Aliases
+GET http://localhost:9200/_aliases
+
+
+Kibana++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+http://localhost:5601/app/dev_tools#/console
+GET _search
+  {
+  "query": {
+  "match_all": {}
+  }
+  }
+GET _alias
+
+
+API-REST++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Create
+curl -X POST localhost:8080/api/customer -d '{"firstname":"Customer", "lastname":"One"}' -H 'Content-Type:application/json'
+curl -X POST localhost:8080/api/customer -d '{"firstname":"Customer", "lastname":"Two"}' -H 'Content-Type:application/json'
+
+GET ALL
+curl -X GET localhost:8080/api/customer
+curl localhost:8080/api/customer | json_pp
+
+Find By Id
+curl localhost:8080/api/customer/4WtaLnkBHAFmHFfMEcUe | json_pp
